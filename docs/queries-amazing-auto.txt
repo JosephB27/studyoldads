@@ -1,0 +1,7 @@
+"DDB" "Volkswagen" "print ads" "white space"
+"Volkswagen" "Lemon" "Snow Plow" "print ad"
+"Porsche" "Nobody's Perfect" "print ad" "copy"
+"BMW" "classic print ad" "copywriting"
+"Volvo" "classic print ad" "copywriting"
+"Rolls-Royce" "Ogilvy" "print ad" "60 miles an hour"
+"Rolex" "classic print ad" "copy"

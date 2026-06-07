@@ -1,0 +1,289 @@
+{
+  "generatedAt": "2026-06-01T22:03:49.437Z",
+  "total": 25,
+  "verified": 24,
+  "seeded": 1,
+  "localImages": 24,
+  "remoteImages": 1,
+  "publicWall": [
+    {
+      "id": "audemars-piguet-royal-oak",
+      "brand": "Audemars Piguet",
+      "title": "It Takes More Than Money",
+      "year": "1972",
+      "status": "verified",
+      "sourceLabel": "Watch Collecting Lifestyle archive",
+      "linkCount": 3,
+      "image": "/ads/minh/audemars-piguet-royal-oak.jpg",
+      "issues": []
+    },
+    {
+      "id": "rolls-royce-simply-best",
+      "brand": "Rolls-Royce",
+      "title": "Simply the Best Motor Car",
+      "year": "1985",
+      "status": "verified",
+      "sourceLabel": "Sir Jack's vintage ad listing",
+      "linkCount": 2,
+      "image": "/ads/minh/rolls-royce-best-motor-car.jpg",
+      "issues": []
+    },
+    {
+      "id": "ipod-1000-songs-pocket",
+      "brand": "Apple",
+      "title": "1,000 Songs in Your Pocket",
+      "year": "2001",
+      "status": "verified",
+      "sourceLabel": "Apple Newsroom",
+      "linkCount": 2,
+      "image": "/ads/minh/ipod-1000-songs.jpg",
+      "issues": []
+    },
+    {
+      "id": "volvo-parliament-speakers",
+      "brand": "Volvo",
+      "title": "More Speakers in a Volvo",
+      "year": "1986",
+      "status": "verified",
+      "sourceLabel": "hobbyDB print ad record",
+      "linkCount": 2,
+      "image": "/ads/minh/volvo-parliament.jpg",
+      "issues": []
+    },
+    {
+      "id": "rolex-speaking-tomorrow",
+      "brand": "Rolex",
+      "title": "If You Were Speaking Here Tomorrow",
+      "year": "1967",
+      "status": "verified",
+      "sourceLabel": "Deathrowads vintage ad archive",
+      "linkCount": 3,
+      "image": "/ads/minh/rolex-speaking-tomorrow.jpg",
+      "issues": []
+    },
+    {
+      "id": "toyota-previa-lamborghini",
+      "brand": "Daihatsu",
+      "title": "Picks Up Five Times More Women",
+      "year": "1996",
+      "status": "verified",
+      "sourceLabel": "Digital Tripathi ad library",
+      "linkCount": 4,
+      "image": "/ads/minh/toyota-previa-lamborghini.jpg",
+      "issues": []
+    },
+    {
+      "id": "apple-ii-simplicity",
+      "brand": "Apple",
+      "title": "Simplicity Is the Ultimate Sophistication",
+      "year": "1977",
+      "status": "verified",
+      "sourceLabel": "Apple II History Museum",
+      "linkCount": 2,
+      "image": "/ads/minh/apple-ii-simplicity.jpg",
+      "issues": []
+    },
+    {
+      "id": "volkswagen-think-small",
+      "brand": "Volkswagen",
+      "title": "Think Small",
+      "year": "1959",
+      "status": "verified",
+      "sourceLabel": "People's Graphic Design Archive",
+      "linkCount": 3,
+      "image": "/ads/minh/volkswagen-think-small.jpg",
+      "issues": []
+    },
+    {
+      "id": "volkswagen-easy-to-push",
+      "brand": "Volkswagen",
+      "title": "Easy to Push",
+      "year": "1962",
+      "status": "verified",
+      "sourceLabel": "Swipefile Beetle ad archive",
+      "linkCount": 2,
+      "image": "/ads/minh/volkswagen-easy-to-push.jpg",
+      "issues": []
+    },
+    {
+      "id": "porsche-nobodys-perfect",
+      "brand": "Porsche",
+      "title": "Nobody's Perfect",
+      "year": "1983",
+      "status": "verified",
+      "sourceLabel": "Ads Library",
+      "linkCount": 3,
+      "image": "/ads/minh/porsche-nobodys-perfect.jpg",
+      "issues": []
+    },
+    {
+      "id": "porsche-investment-million",
+      "brand": "Volvo",
+      "title": "He Never Dreamed His Investment Would Make a Million",
+      "year": "1987",
+      "status": "verified",
+      "sourceLabel": "Volvo Cars newsroom",
+      "linkCount": 4,
+      "image": "/ads/minh/porsche-investment-million.jpg",
+      "issues": []
+    },
+    {
+      "id": "bmw-very-late-work",
+      "brand": "BMW",
+      "title": "Who's Going to Work?",
+      "year": "1985",
+      "status": "seeded",
+      "sourceLabel": "Minh Nguyen seed board",
+      "linkCount": 1,
+      "image": "/ads/minh/bmw-very-late-work.jpg",
+      "issues": [
+        "needs second-source verification",
+        "source is social seed mirror",
+        "needs another research link"
+      ]
+    },
+    {
+      "id": "volkswagen-lemon-1960",
+      "brand": "Volkswagen",
+      "title": "Lemon",
+      "year": "1960",
+      "status": "verified",
+      "sourceLabel": "Volkswagen Group archive",
+      "linkCount": 3,
+      "image": "/ads/discovered/volkswagen-lemon-1960.jpg",
+      "issues": []
+    },
+    {
+      "id": "volkswagen-mileage-varies-1960",
+      "brand": "Volkswagen",
+      "title": "Why?",
+      "year": "1960",
+      "status": "verified",
+      "sourceLabel": "Auto History Preservation Society",
+      "linkCount": 2,
+      "image": "/ads/discovered/volkswagen-mileage-varies-1960.jpg",
+      "issues": []
+    },
+    {
+      "id": "volkswagen-snow-plow-1961",
+      "brand": "Volkswagen",
+      "title": "A Volkswagen, Obviously",
+      "year": "1961",
+      "status": "verified",
+      "sourceLabel": "Auto History Preservation Society",
+      "linkCount": 2,
+      "image": "/ads/discovered/volkswagen-snow-plow-1961.jpg",
+      "issues": []
+    },
+    {
+      "id": "volkswagen-never-1961",
+      "brand": "Volkswagen",
+      "title": "Never",
+      "year": "1961",
+      "status": "verified",
+      "sourceLabel": "Auto History Preservation Society",
+      "linkCount": 2,
+      "image": "/ads/discovered/volkswagen-never-1961.jpg",
+      "issues": []
+    },
+    {
+      "id": "rolls-royce-60mph-1958",
+      "brand": "Rolls-Royce",
+      "title": "At 60 Miles an Hour",
+      "year": "1958",
+      "status": "verified",
+      "sourceLabel": "Swiped / Ogilvy archive",
+      "linkCount": 1,
+      "image": "/ads/discovered/rolls-royce-60mph-1958.jpg",
+      "issues": []
+    },
+    {
+      "id": "apple-macintosh-test-drive",
+      "brand": "Apple",
+      "title": "Test Drive a Macintosh",
+      "year": "1984",
+      "status": "verified",
+      "sourceLabel": "Cult of Mac campaign history",
+      "linkCount": 2,
+      "image": "/ads/discovered/apple-macintosh-1984.jpg",
+      "issues": []
+    },
+    {
+      "id": "absolut-perfection",
+      "brand": "Absolut",
+      "title": "Absolut Perfection",
+      "year": "1980",
+      "status": "verified",
+      "sourceLabel": "Absolut brand history",
+      "linkCount": 2,
+      "image": "/ads/discovered/absolut-perfection.jpg",
+      "issues": []
+    },
+    {
+      "id": "apple-think-different-ali",
+      "brand": "Apple",
+      "title": "Think Different: Muhammad Ali",
+      "year": "1997",
+      "status": "verified",
+      "sourceLabel": "Posterama discovery source",
+      "linkCount": 2,
+      "image": "/ads/discovered/apple-think-different-ali.jpg",
+      "issues": []
+    },
+    {
+      "id": "underground-keep-warm-travel",
+      "brand": "London Underground",
+      "title": "Keep Warm Travel Underground",
+      "year": "1925",
+      "status": "verified",
+      "sourceLabel": "London Transport Museum",
+      "linkCount": 3,
+      "image": "/ads/london/keep-warm-travel.jpg",
+      "issues": []
+    },
+    {
+      "id": "underground-take-cover",
+      "brand": "London Underground",
+      "title": "Take Cover Travel Underground",
+      "year": "1925",
+      "status": "verified",
+      "sourceLabel": "Toovey's auction record",
+      "linkCount": 2,
+      "image": "/ads/london/take-cover-travel.jpg",
+      "issues": []
+    },
+    {
+      "id": "underground-lure",
+      "brand": "London Underground",
+      "title": "The Lure of the Underground",
+      "year": "1927",
+      "status": "verified",
+      "sourceLabel": "London Transport Museum",
+      "linkCount": 4,
+      "image": "/ads/london/lure-of-the-underground.jpg",
+      "issues": []
+    },
+    {
+      "id": "underground-fly-the-tube",
+      "brand": "London Underground",
+      "title": "Fly the Tube",
+      "year": "1978",
+      "status": "verified",
+      "sourceLabel": "Dominic Winter auction record",
+      "linkCount": 3,
+      "image": "/ads/london/fly-the-tube-heathrow-trains.jpg",
+      "issues": []
+    },
+    {
+      "id": "coca-cola-5c",
+      "brand": "Coca-Cola",
+      "title": "Drink Coca-Cola 5 Cents",
+      "year": "1900",
+      "status": "verified",
+      "sourceLabel": "Wikimedia Commons",
+      "linkCount": 2,
+      "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Cocacola-5cents-1900%20edit2.jpg",
+      "issues": []
+    }
+  ]
+}

@@ -1,0 +1,50 @@
+# Poster-wall discovery queries (lanes 2–6)
+# Skip London Underground — already covered on the wall.
+# Run: npm run discover:wall
+# Or:  npm run discover:ads -- --queries docs/discovery-queries.txt --no-default-urls
+
+# --- Lane 2: Taste-board lane (social crops, layout-forward luxury/auto/tech) ---
+"minimal" "print ad" luxury watch layout
+"vintage" "advertisement" Porsche poster crop
+"classic ads" Rolex poster photography
+"print campaign" BMW poster 1980s
+"advertising" Daihatsu humorous print
+site:watchcollectinglifestyle.com Royal Oak advertisement
+"luxury" "print" "white space" watch
+"tech" "launch" print poster Apple 2000s
+
+# --- Lane 3: Tech launch posters (product hero + one line) ---
+"iPod" poster "1000 songs"
+"Macintosh" launch poster 1984
+"Think different" poster NOT magazine
+site:computerhistory.org Apple poster
+"Nike" poster "billboard" classic
+"Sony Walkman" poster advertisement
+"NeXT" poster campaign
+"IBM" poster "Think" vintage
+
+# --- Lane 4: Witty auto — single-image / poster, not full-page copy ---
+"Volvo" witty print poster
+"Volvo" "speakers" "Parliament" advertisement
+"Porsche" poster "Le Mans" humor
+"BMW" poster "ultimate driving"
+"MINI" poster campaign witty
+site:adslibrary.com Porsche print
+site:digitaltripathi.com ad library
+
+# --- Lane 5: Color beverage / spirits posters ---
+"Coca-Cola" vintage poster
+"Pepsi" poster vintage graphic
+"Absolut" poster bottle campaign
+"Absolut" Warhol poster
+"Guinness" poster vintage
+"Campari" poster vintage
+
+# --- Lane 6: Watch / luxury — photo + headline (no essay ads) ---
+"Rolex" poster advertisement photography
+"Audemars Piguet" Royal Oak poster advertisement
+"Patek Philippe" poster campaign
+"Cartier" poster vintage advertisement
+"Omega" poster advertisement
+"TAG Heuer" poster campaign
+"luxury watch" print advertisement photography

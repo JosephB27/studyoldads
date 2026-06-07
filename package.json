@@ -1,0 +1,31 @@
+{
+  "name": "studyoldads.com",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "audit:corpus": "node scripts/audit-corpus.mjs",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint",
+    "discover:ads": "node scripts/discover-ads.mjs",
+    "discover:wall": "node scripts/discover-ads.mjs --queries docs/discovery-queries.txt --no-default-urls --pages 35 --limit 40",
+    "discover:tweet": "node scripts/discover-from-tweet.mjs",
+    "queue:promotions": "node scripts/build-promotion-queue.mjs",
+    "validate:corpus": "node scripts/validate-corpus.mjs",
+    "validate:urls": "node scripts/validate-remote-urls.mjs"
+  },
+  "dependencies": {
+    "next": "^16.2.7",
+    "react": "^19.2.7",
+    "react-dom": "^19.2.7"
+  },
+  "devDependencies": {
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "eslint": "^9",
+    "eslint-config-next": "^16.2.7",
+    "typescript": "^5"
+  }
+}

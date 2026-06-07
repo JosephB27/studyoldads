@@ -1,0 +1,272 @@
+.shell {
+  min-height: 100vh;
+  background: #fff;
+  color: #050505;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+.imageWall {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  align-items: start;
+  gap: 0;
+  min-height: 100vh;
+  padding: 0;
+}
+
+.plate {
+  display: grid;
+  min-width: 0;
+  min-height: 28vw;
+  place-items: center;
+  border: 0;
+  background: #fff;
+  cursor: pointer;
+}
+
+.plate:focus,
+.plate:focus-visible {
+  outline: none;
+}
+
+.plate img {
+  display: block;
+  width: min(74%, 230px);
+  max-height: 26vw;
+  object-fit: contain;
+  filter: saturate(0.94) contrast(1.02)
+    drop-shadow(0 5px 14px rgba(0, 0, 0, 0.18));
+  transition:
+    opacity 140ms ease,
+    transform 140ms ease,
+    filter 140ms ease;
+}
+
+.plate:hover img,
+.plate:focus-visible img {
+  opacity: 0.78;
+  transform: scale(1.015);
+  filter: saturate(0.94) contrast(1.02)
+    drop-shadow(0 11px 22px rgba(0, 0, 0, 0.26));
+}
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 10;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(360px, 0.72fr);
+  overflow: auto;
+  background: #fff;
+  color: #050505;
+  animation: overlayIn 160ms ease-out;
+}
+
+@keyframes overlayIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+.close {
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  z-index: 12;
+  display: grid;
+  width: 40px;
+  height: 40px;
+  place-items: center;
+  border: 0;
+  background: transparent;
+  color: #050505;
+  cursor: pointer;
+  font-size: 12px;
+  line-height: 1;
+}
+
+.focusImage {
+  display: grid;
+  min-height: 100vh;
+  place-items: center;
+  padding: clamp(24px, 5vh, 56px) clamp(28px, 5vw, 80px);
+  perspective: 1200px;
+  pointer-events: none;
+}
+
+.focusImage img {
+  display: block;
+  width: auto;
+  max-width: min(100%, 780px);
+  max-height: 82vh;
+  object-fit: contain;
+  animation: flipIn 420ms cubic-bezier(0.2, 0.7, 0.2, 1);
+  pointer-events: auto;
+}
+
+@keyframes flipIn {
+  from {
+    opacity: 0;
+    transform: rotateY(-18deg) translateX(-28px);
+  }
+
+  to {
+    opacity: 1;
+    transform: rotateY(0deg) translateX(0);
+  }
+}
+
+.metadata {
+  display: grid;
+  align-content: center;
+  gap: 16px;
+  min-height: 100vh;
+  padding: 72px 52px 52px 0;
+  color: #050505;
+}
+
+.code,
+.metadata h3,
+.metadata dt,
+.links a {
+  font-size: 11px;
+  line-height: 1.1;
+  text-transform: uppercase;
+}
+
+.metadata h2 {
+  font-size: clamp(42px, 7vw, 94px);
+  font-weight: 400;
+  line-height: 0.88;
+}
+
+.metadata h3 {
+  font-weight: 400;
+}
+
+.metadata p:not(.code),
+.metadata blockquote,
+.metadata dd {
+  max-width: 520px;
+  color: #050505;
+  font-size: 15px;
+  line-height: 1.42;
+}
+
+.metadata blockquote {
+  margin: 10px 0;
+}
+
+.metadata dl {
+  display: grid;
+  gap: 10px;
+  margin-top: 8px;
+}
+
+.metadata div {
+  display: grid;
+  gap: 3px;
+}
+
+.metadata dt {
+  color: #6b6b6b;
+}
+
+.links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 10px;
+}
+
+.links a {
+  color: #050505;
+  text-decoration: none;
+}
+
+@media (max-width: 900px) {
+  .imageWall {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .plate {
+    min-height: 45vw;
+  }
+
+  .plate img {
+    width: 76%;
+    max-height: 42vw;
+  }
+}
+
+@media (max-width: 680px) {
+  .imageWall {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    min-height: 100vh;
+  }
+
+  .plate {
+    min-height: 62vw;
+  }
+
+  .plate img {
+    width: 78%;
+    max-height: 58vw;
+  }
+
+  .overlay {
+    position: fixed;
+    top: 8px;
+    right: 0;
+    bottom: auto;
+    left: 0;
+    grid-template-columns: 1fr;
+    width: calc(100% - 16px);
+    max-height: calc(92svh - 8px);
+    margin: 0 auto;
+    overflow: auto;
+    border: 1px solid #efefef;
+    border-radius: 6px;
+    box-shadow: 0 18px 38px rgba(0, 0, 0, 0.1);
+  }
+
+  .close {
+    position: sticky;
+    top: 0;
+    margin-left: auto;
+    background: #fff;
+  }
+
+  .focusImage {
+    min-height: auto;
+    padding: 8px 18px 18px;
+  }
+
+  .focusImage img {
+    width: min(70vw, 310px);
+    max-height: 54vh;
+  }
+
+  .metadata {
+    align-content: start;
+    min-height: auto;
+    padding: 4px 22px 34px;
+  }
+
+  .metadata h2 {
+    font-size: 42px;
+  }
+}
