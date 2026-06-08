@@ -14,10 +14,8 @@ const requiredTextFields = [
   "image",
   "source",
   "sourceLabel",
-  "rights",
   "origin",
   "description",
-  "lesson",
 ];
 
 function fail(ad, message) {
@@ -71,16 +69,8 @@ for (const ad of ads) {
     fail(ad, "palette must contain exactly 3 colors");
   }
 
-  if (!Array.isArray(ad.tags) || ad.tags.length < 2) {
-    fail(ad, "needs at least 2 tags");
-  }
-
   if (ad.description.length < 90) {
     fail(ad, "description is too thin");
-  }
-
-  if (ad.lesson.length < 24) {
-    fail(ad, "lesson is too thin");
   }
 }
 

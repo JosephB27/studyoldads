@@ -1,7 +1,7 @@
 "use client";
 
 /* eslint-disable @next/next/no-img-element */
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { ads, type Ad } from "@/data/ads";
 import styles from "./page.module.css";
 
@@ -37,6 +37,7 @@ function countColumns(buttons: HTMLButtonElement[]) {
 
 export default function Home() {
   const [selectedAd, setSelectedAd] = useState<Ad | null>(null);
+  const [paletteOpen, setPaletteOpen] = useState(false);
   const plateRefs = useRef<(HTMLButtonElement | null)[]>([]);
 
   useEffect(() => {
@@ -52,7 +53,7 @@ export default function Home() {
   }, []);
 
   useEffect(() => {
-    if (!selectedAd) {
+    if (!selectedAd && !paletteOpen) {
       return;
     }
 
@@ -62,12 +63,25 @@ export default function Home() {
     return () => {
       document.body.style.overflow = previousOverflow;
     };
-  }, [selectedAd]);
+  }, [selectedAd, paletteOpen]);
+
+  // Cmd/Ctrl+K toggles the brand search palette from anywhere.
+  useEffect(() => {
+    function handleShortcut(event: KeyboardEvent) {
+      if ((event.metaKey || event.ctrlKey) && event.key.toLowerCase() === "k") {
+        event.preventDefault();
+        setPaletteOpen((open) => !open);
+      }
+    }
+
+    window.addEventListener("keydown", handleShortcut);
+    return () => window.removeEventListener("keydown", handleShortcut);
+  }, []);
 
   // Arrow-key navigation across the image wall (Enter/Space open via the
   // native button). Disabled while the overlay is open — it handles its own keys.
   useEffect(() => {
-    if (selectedAd) {
+    if (selectedAd || paletteOpen) {
       return;
     }
 
@@ -124,7 +138,7 @@ export default function Home() {
 
     window.addEventListener("keydown", handleWallKeydown);
     return () => window.removeEventListener("keydown", handleWallKeydown);
-  }, [selectedAd]);
+  }, [selectedAd, paletteOpen]);
 
   const selectAd = useCallback((ad: Ad) => {
     setSelectedAd(ad);
@@ -197,22 +211,176 @@ export default function Home() {
       {selectedAd ? (
         <AdOverlay
           ad={selectedAd}
+          paused={paletteOpen}
           onClose={closeAd}
           onNext={() => moveSelection(1)}
           onPrevious={() => moveSelection(-1)}
+        />
+      ) : null}
+
+      {paletteOpen ? (
+        <CommandPalette
+          onClose={() => setPaletteOpen(false)}
+          onSelect={(ad) => {
+            setPaletteOpen(false);
+            selectAd(ad);
+          }}
         />
       ) : null}
     </main>
   );
 }
 
+function CommandPalette({
+  onClose,
+  onSelect,
+}: {
+  onClose: () => void;
+  onSelect: (ad: Ad) => void;
+}) {
+  const [query, setQuery] = useState("");
+  const [activeIndex, setActiveIndex] = useState(0);
+  const inputRef = useRef<HTMLInputElement>(null);
+  const listRef = useRef<HTMLUListElement>(null);
+
+  const results = useMemo(() => {
+    const q = query.trim().toLowerCase();
+    if (!q) {
+      return ads;
+    }
+
+    const matches = ads.filter(
+      (ad) =>
+        ad.brand.toLowerCase().includes(q) ||
+        ad.title.toLowerCase().includes(q) ||
+        ad.year.includes(q),
+    );
+
+    // A numeric query (e.g. "1959" or "196" for the 1960s) is a year search:
+    // year hits come first, ordered chronologically.
+    if (/^\d+$/.test(q)) {
+      return matches.sort((a, b) => {
+        const yearHit = (ad: Ad) => (ad.year.includes(q) ? 0 : 1);
+        return yearHit(a) - yearHit(b) || a.year.localeCompare(b.year);
+      });
+    }
+
+    return matches.sort((a, b) => {
+      // Brand matches before title-only matches; brand-prefix matches first.
+      const rank = (ad: Ad) => {
+        const brand = ad.brand.toLowerCase();
+        if (brand.startsWith(q)) return 0;
+        if (brand.includes(q)) return 1;
+        return 2;
+      };
+      return rank(a) - rank(b);
+    });
+  }, [query]);
+
+  useEffect(() => {
+    inputRef.current?.focus();
+  }, []);
+
+  useEffect(() => {
+    setActiveIndex(0);
+  }, [query]);
+
+  // Keep the highlighted row in view as you arrow through results.
+  useEffect(() => {
+    const node = listRef.current?.querySelector<HTMLElement>(
+      `[data-index="${activeIndex}"]`,
+    );
+    node?.scrollIntoView({ block: "nearest" });
+  }, [activeIndex]);
+
+  const handleKeydown = (event: React.KeyboardEvent) => {
+    if (event.key === "Escape") {
+      event.preventDefault();
+      onClose();
+    } else if (event.key === "ArrowDown") {
+      event.preventDefault();
+      setActiveIndex((index) => Math.min(index + 1, results.length - 1));
+    } else if (event.key === "ArrowUp") {
+      event.preventDefault();
+      setActiveIndex((index) => Math.max(index - 1, 0));
+    } else if (event.key === "Enter") {
+      event.preventDefault();
+      const ad = results[activeIndex];
+      if (ad) {
+        onSelect(ad);
+      }
+    }
+  };
+
+  return (
+    <div
+      className={styles.paletteBackdrop}
+      onMouseDown={(event) => {
+        if (event.target === event.currentTarget) {
+          onClose();
+        }
+      }}
+    >
+      <div
+        className={styles.palette}
+        role="dialog"
+        aria-modal="true"
+        aria-label="Search brands"
+      >
+        <input
+          ref={inputRef}
+          className={styles.paletteInput}
+          type="text"
+          placeholder="Search by brand or year…"
+          value={query}
+          onChange={(event) => setQuery(event.target.value)}
+          onKeyDown={handleKeydown}
+          aria-label="Search brands"
+          autoComplete="off"
+          spellCheck={false}
+        />
+
+        {results.length > 0 ? (
+          <ul className={styles.paletteResults} ref={listRef}>
+            {results.map((ad, index) => (
+              <li key={ad.id}>
+                <button
+                  type="button"
+                  data-index={index}
+                  className={styles.paletteRow}
+                  data-active={index === activeIndex ? "true" : undefined}
+                  onMouseMove={() => setActiveIndex(index)}
+                  onClick={() => onSelect(ad)}
+                >
+                  <img
+                    className={styles.paletteThumb}
+                    src={adImageSrc(ad.image)}
+                    alt=""
+                  />
+                  <span className={styles.paletteBrand}>{ad.brand}</span>
+                  <span className={styles.paletteTitle}>{ad.title}</span>
+                  <span className={styles.paletteYear}>{ad.year}</span>
+                </button>
+              </li>
+            ))}
+          </ul>
+        ) : (
+          <p className={styles.paletteEmpty}>No brands match “{query}”.</p>
+        )}
+      </div>
+    </div>
+  );
+}
+
 function AdOverlay({
   ad,
+  paused,
   onClose,
   onNext,
   onPrevious,
 }: {
   ad: Ad;
+  paused: boolean;
   onClose: () => void;
   onNext: () => void;
   onPrevious: () => void;
@@ -226,6 +394,11 @@ function AdOverlay({
   );
 
   useEffect(() => {
+    // While the search palette is open, let it own the keyboard.
+    if (paused) {
+      return;
+    }
+
     function handleKeydown(event: KeyboardEvent) {
       if (event.key === "Escape") {
         onClose();
@@ -244,7 +417,7 @@ function AdOverlay({
 
     window.addEventListener("keydown", handleKeydown);
     return () => window.removeEventListener("keydown", handleKeydown);
-  }, [onClose, onNext, onPrevious]);
+  }, [paused, onClose, onNext, onPrevious]);
 
   return (
     <section
@@ -279,20 +452,11 @@ function AdOverlay({
         <h2>{ad.brand}</h2>
         <h3>{ad.title}</h3>
         <p>{ad.description}</p>
-        <blockquote>{ad.lesson}</blockquote>
 
         <dl>
           <div>
             <dt>Origin</dt>
             <dd>{ad.origin}</dd>
-          </div>
-          <div>
-            <dt>Rights</dt>
-            <dd>{ad.rights}</dd>
-          </div>
-          <div>
-            <dt>Tags</dt>
-            <dd>{ad.tags.join(", ")}</dd>
           </div>
         </dl>
 
