@@ -1632,3 +1632,27 @@ const researchOverrides: Record<string, Partial<Ad>> = {
 
 export const ads: Ad[] = allAds
   .map((ad) => ({ ...ad, ...researchOverrides[ad.id] }));
+
+/** Look up a single ad by its stable id/slug (used by the /ad/[slug] route). */
+export function getAdBySlug(slug: string): Ad | undefined {
+  return ads.find((ad) => ad.id === slug);
+}
+
+/**
+ * Descriptive alt text for an ad image. Crawlers and screen readers get the
+ * brand, headline, year and category instead of the empty alt the wall shipped.
+ */
+export function adAltText(ad: Ad): string {
+  return `${ad.brand} "${ad.title}" — ${ad.year} ${ad.category.toLowerCase()} print advertisement`;
+}
+
+/** A compact, search-friendly description for per-ad page metadata. */
+export function adMetaDescription(ad: Ad): string {
+  const lead = `${ad.brand} "${ad.title}" (${ad.year}) — vintage ${ad.category.toLowerCase()} print ad. `;
+  const budget = 160 - lead.length;
+  const body =
+    ad.description.length > budget
+      ? `${ad.description.slice(0, Math.max(0, budget - 1)).trimEnd()}…`
+      : ad.description;
+  return `${lead}${body}`;
+}

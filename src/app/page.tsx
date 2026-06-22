@@ -2,32 +2,29 @@
 
 /* eslint-disable @next/next/no-img-element */
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { ads, type Ad } from "@/data/ads";
+import Image from "next/image";
+import { ads, adAltText, type Ad } from "@/data/ads";
+import { imageDimensions } from "@/data/imageDimensions";
 import styles from "./page.module.css";
 
-/** Bump when local /ads/* image files change so browsers don't serve stale crops. */
-const LOCAL_AD_IMAGE_VERSION = "3";
+const FALLBACK_DIMS = { width: 800, height: 1000 };
 
-function adImageSrc(image: string) {
-  if (image.startsWith("/ads/")) {
-    return `${image}?v=${LOCAL_AD_IMAGE_VERSION}`;
-  }
-
-  return image;
+function adDims(image: string) {
+  return imageDimensions[image] ?? FALLBACK_DIMS;
 }
 
 /** Focus a tile without the browser's instant jump, then ease it into view. */
-function focusPlate(button: HTMLButtonElement) {
-  button.focus({ preventScroll: true });
-  button.scrollIntoView({ behavior: "smooth", block: "nearest", inline: "nearest" });
+function focusPlate(tile: HTMLAnchorElement) {
+  tile.focus({ preventScroll: true });
+  tile.scrollIntoView({ behavior: "smooth", block: "nearest", inline: "nearest" });
 }
 
 /** Count grid columns by how many tiles share the top row's offset. */
-function countColumns(buttons: HTMLButtonElement[]) {
-  const firstTop = buttons[0].offsetTop;
+function countColumns(tiles: HTMLAnchorElement[]) {
+  const firstTop = tiles[0].offsetTop;
   let columns = 0;
-  for (const button of buttons) {
-    if (button.offsetTop !== firstTop) {
+  for (const tile of tiles) {
+    if (tile.offsetTop !== firstTop) {
       break;
     }
     columns += 1;
@@ -38,7 +35,7 @@ function countColumns(buttons: HTMLButtonElement[]) {
 export default function Home() {
   const [selectedAd, setSelectedAd] = useState<Ad | null>(null);
   const [paletteOpen, setPaletteOpen] = useState(false);
-  const plateRefs = useRef<(HTMLButtonElement | null)[]>([]);
+  const plateRefs = useRef<(HTMLAnchorElement | null)[]>([]);
 
   useEffect(() => {
     function syncSelectionFromHash() {
@@ -92,7 +89,7 @@ export default function Home() {
       }
 
       const buttons = plateRefs.current.filter(
-        (button): button is HTMLButtonElement => button !== null,
+        (tile): tile is HTMLAnchorElement => tile !== null,
       );
       if (!buttons.length) {
         return;
@@ -101,7 +98,7 @@ export default function Home() {
       event.preventDefault();
 
       const currentIndex = buttons.indexOf(
-        document.activeElement as HTMLButtonElement,
+        document.activeElement as HTMLAnchorElement,
       );
       if (currentIndex === -1) {
         focusPlate(buttons[0]);
@@ -192,20 +189,38 @@ export default function Home() {
       <h1 className={styles.srOnly}>studyoldads.com</h1>
 
       <section className={styles.imageWall} aria-label="Old print ads">
-        {ads.map((ad, index) => (
-          <button
-            type="button"
-            key={ad.id}
-            ref={(node) => {
-              plateRefs.current[index] = node;
-            }}
-            className={styles.plate}
-            onClick={() => selectAd(ad)}
-            aria-label={`${ad.brand} ${ad.title}, ${ad.year}`}
-          >
-            <img src={adImageSrc(ad.image)} alt="" />
-          </button>
-        ))}
+        {ads.map((ad, index) => {
+          const dims = adDims(ad.image);
+          return (
+            <a
+              key={ad.id}
+              href={`/ad/${ad.id}`}
+              ref={(node) => {
+                plateRefs.current[index] = node;
+              }}
+              className={styles.plate}
+              // Open the in-place overlay for JS users; the href keeps the tile
+              // a real, crawlable link to the ad's own page (and deep-linkable).
+              onClick={(event) => {
+                if (event.metaKey || event.ctrlKey || event.shiftKey || event.button !== 0) {
+                  return;
+                }
+                event.preventDefault();
+                selectAd(ad);
+              }}
+              aria-label={`${ad.brand} ${ad.title}, ${ad.year}`}
+            >
+              <Image
+                src={ad.image}
+                alt={adAltText(ad)}
+                width={dims.width}
+                height={dims.height}
+                sizes="(max-width: 680px) 40vw, (max-width: 900px) 28vw, 230px"
+                priority={index < 5}
+              />
+            </a>
+          );
+        })}
       </section>
 
       {selectedAd ? (
@@ -352,10 +367,13 @@ function CommandPalette({
                   onMouseMove={() => setActiveIndex(index)}
                   onClick={() => onSelect(ad)}
                 >
-                  <img
+                  <Image
                     className={styles.paletteThumb}
-                    src={adImageSrc(ad.image)}
+                    src={ad.image}
                     alt=""
+                    width={adDims(ad.image).width}
+                    height={adDims(ad.image).height}
+                    sizes="40px"
                   />
                   <span className={styles.paletteBrand}>{ad.brand}</span>
                   <span className={styles.paletteTitle}>{ad.title}</span>
@@ -441,9 +459,13 @@ function AdOverlay({
       </button>
 
       <div className={styles.focusImage} key={ad.id}>
-        <img
-          src={adImageSrc(ad.image)}
-          alt={`${ad.brand} ${ad.title} print ad`}
+        <Image
+          src={ad.image}
+          alt={adAltText(ad)}
+          width={adDims(ad.image).width}
+          height={adDims(ad.image).height}
+          sizes="(max-width: 680px) 82vw, 50vw"
+          priority
         />
       </div>
 
