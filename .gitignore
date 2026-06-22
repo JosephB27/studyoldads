@@ -43,3 +43,6 @@ next-env.d.ts
 
 # discovery pipeline scrape artifacts (raw third-party scrapes, not part of the product)
 /data/discovery/
+
+# gstack/agent worktrees
+.claude/worktrees/

@@ -1371,8 +1371,9 @@ const allAds: Ad[] = [
     year: "1900",
     period: "Early refreshment",
     category: "Beverage",
-    image:
-      "https://commons.wikimedia.org/wiki/Special:FilePath/Cocacola-5cents-1900%20edit2.jpg",
+    // Self-hosted from Wikimedia Commons (see source/links) for stability and
+    // so next/image can optimize it like every other local ad image.
+    image: "/ads/added/coca-cola-5cents-1900.jpg",
     source:
       "https://commons.wikimedia.org/wiki/File:Cocacola-5cents-1900_edit2.jpg",
     sourceLabel: "Wikimedia Commons",
@@ -1632,3 +1633,100 @@ const researchOverrides: Record<string, Partial<Ad>> = {
 
 export const ads: Ad[] = allAds
   .map((ad) => ({ ...ad, ...researchOverrides[ad.id] }));
+
+/** Look up a single ad by its stable id/slug (used by the /ad/[slug] route). */
+export function getAdBySlug(slug: string): Ad | undefined {
+  return ads.find((ad) => ad.id === slug);
+}
+
+/**
+ * Descriptive alt text for an ad image. Crawlers and screen readers get the
+ * brand, headline, year and category instead of the empty alt the wall shipped.
+ */
+export function adAltText(ad: Ad): string {
+  return `${ad.brand} "${ad.title}" — ${ad.year} ${ad.category.toLowerCase()} print advertisement`;
+}
+
+/** URL-safe slug for a category name, e.g. "Automotive" -> "automotive". */
+export function categorySlug(category: string): string {
+  return category
+    .toLowerCase()
+    .replace(/&/g, "and")
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/(^-|-$)/g, "");
+}
+
+/** The decade an ad belongs to, as a slug, e.g. "1962" -> "1960s". */
+export function decadeSlug(ad: Ad): string {
+  const year = parseInt(ad.year.slice(0, 4), 10);
+  if (Number.isNaN(year)) return "unknown";
+  return `${Math.floor(year / 10) * 10}s`;
+}
+
+/** Distinct categories, most-populated first, with their ad counts. */
+export function categories(): { name: string; slug: string; count: number }[] {
+  const counts = new Map<string, number>();
+  for (const ad of ads) counts.set(ad.category, (counts.get(ad.category) ?? 0) + 1);
+  return [...counts.entries()]
+    .map(([name, count]) => ({ name, slug: categorySlug(name), count }))
+    .sort((a, b) => b.count - a.count || a.name.localeCompare(b.name));
+}
+
+/** Distinct decades, chronological, with their ad counts. */
+export function decades(): { slug: string; count: number }[] {
+  const counts = new Map<string, number>();
+  for (const ad of ads) {
+    const slug = decadeSlug(ad);
+    if (slug === "unknown") continue;
+    counts.set(slug, (counts.get(slug) ?? 0) + 1);
+  }
+  return [...counts.entries()]
+    .map(([slug, count]) => ({ slug, count }))
+    .sort((a, b) => a.slug.localeCompare(b.slug));
+}
+
+/** Ads in a category (by slug), newest first. */
+export function adsByCategory(slug: string): Ad[] {
+  return ads
+    .filter((ad) => categorySlug(ad.category) === slug)
+    .sort((a, b) => b.year.localeCompare(a.year));
+}
+
+/** Ads in a decade (by slug, e.g. "1960s"), chronological. */
+export function adsByDecade(slug: string): Ad[] {
+  return ads.filter((ad) => decadeSlug(ad) === slug).sort((a, b) => a.year.localeCompare(b.year));
+}
+
+/** The human label for a category slug, or undefined if none match. */
+export function categoryName(slug: string): string | undefined {
+  return ads.find((ad) => categorySlug(ad.category) === slug)?.category;
+}
+
+/**
+ * Up to `limit` other ads to surface alongside `ad` — same brand first, then
+ * same category, then same decade. Builds the internal-link graph crawlers
+ * (and readers) follow from one ad to the next.
+ */
+export function relatedAds(ad: Ad, limit = 6): Ad[] {
+  const score = (other: Ad) => {
+    if (other.brand === ad.brand) return 3;
+    if (other.category === ad.category) return 2;
+    if (decadeSlug(other) === decadeSlug(ad)) return 1;
+    return 0;
+  };
+  return ads
+    .filter((other) => other.id !== ad.id && score(other) > 0)
+    .sort((a, b) => score(b) - score(a) || a.year.localeCompare(b.year))
+    .slice(0, limit);
+}
+
+/** A compact, search-friendly description for per-ad page metadata. */
+export function adMetaDescription(ad: Ad): string {
+  const lead = `${ad.brand} "${ad.title}" (${ad.year}) — vintage ${ad.category.toLowerCase()} print ad. `;
+  const budget = 160 - lead.length;
+  const body =
+    ad.description.length > budget
+      ? `${ad.description.slice(0, Math.max(0, budget - 1)).trimEnd()}…`
+      : ad.description;
+  return `${lead}${body}`;
+}

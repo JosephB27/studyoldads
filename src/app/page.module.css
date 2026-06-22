@@ -42,6 +42,7 @@
 .plate img {
   display: block;
   width: min(74%, 230px);
+  height: auto;
   max-height: 26vw;
   object-fit: contain;
   pointer-events: auto;
@@ -113,6 +114,7 @@
 .focusImage img {
   display: block;
   width: auto;
+  height: auto;
   max-width: min(100%, 780px);
   max-height: 82vh;
   object-fit: contain;
