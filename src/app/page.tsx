@@ -5,6 +5,7 @@ import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import Image from "next/image";
 import { ads, adAltText, type Ad } from "@/data/ads";
 import { imageDimensions } from "@/data/imageDimensions";
+import { jsonLdScript, siteJsonLd } from "@/app/_lib/seo";
 import styles from "./page.module.css";
 
 const FALLBACK_DIMS = { width: 800, height: 1000 };
@@ -186,7 +187,10 @@ export default function Home() {
 
   return (
     <main className={styles.shell}>
-      <h1 className={styles.srOnly}>studyoldads.com</h1>
+      {jsonLdScript(siteJsonLd())}
+      <h1 className={styles.srOnly}>
+        Study Old Ads — a vintage print advertising archive
+      </h1>
 
       <section className={styles.imageWall} aria-label="Old print ads">
         {ads.map((ad, index) => {

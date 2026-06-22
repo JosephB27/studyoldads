@@ -2,8 +2,19 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
-import { ads, getAdBySlug, adAltText, adMetaDescription, type Ad } from "@/data/ads";
+import {
+  ads,
+  getAdBySlug,
+  adAltText,
+  adMetaDescription,
+  categorySlug,
+  decadeSlug,
+  relatedAds,
+  type Ad,
+} from "@/data/ads";
 import { imageDimensions } from "@/data/imageDimensions";
+import { AdGrid } from "@/app/_components/AdGrid";
+import { jsonLdScript, breadcrumbJsonLd, SITE_URL } from "@/app/_lib/seo";
 import styles from "./ad.module.css";
 
 type Params = { slug: string };
@@ -104,20 +115,24 @@ export default async function AdPage({ params }: { params: Promise<Params> }) {
   const links = [{ label: ad.sourceLabel, href: ad.source }, ...ad.links].filter(
     (link, index, all) => all.findIndex((l) => l.href === link.href) === index,
   );
-  const jsonLd = buildJsonLd(ad);
+  const catSlug = categorySlug(ad.category);
+  const decSlug = decadeSlug(ad);
+  const related = relatedAds(ad);
 
   return (
     <main className={styles.page}>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c"),
-        }}
-      />
+      {jsonLdScript([
+        buildJsonLd(ad),
+        breadcrumbJsonLd([
+          { name: "study old ads", url: SITE_URL },
+          { name: `${ad.category} ads`, url: `${SITE_URL}/category/${catSlug}` },
+          { name: ad.brand, url: `${SITE_URL}/ad/${ad.id}` },
+        ]),
+      ])}
 
       <nav className={styles.bar} aria-label="Breadcrumb">
         <Link href="/">← study old ads</Link>
-        <span>{ad.year}</span>
+        <Link href={`/category/${catSlug}`}>{ad.category}</Link>
       </nav>
 
       <div className={styles.layout}>
@@ -141,6 +156,18 @@ export default async function AdPage({ params }: { params: Promise<Params> }) {
           <p className="body">{ad.description}</p>
 
           <dl className={styles.facts}>
+            <div>
+              <dt>Category</dt>
+              <dd>
+                <Link href={`/category/${catSlug}`}>{ad.category}</Link>
+              </dd>
+            </div>
+            <div>
+              <dt>Decade</dt>
+              <dd>
+                <Link href={`/decade/${decSlug}`}>{decSlug}</Link>
+              </dd>
+            </div>
             <div>
               <dt>Period</dt>
               <dd>{ad.period}</dd>
@@ -166,6 +193,13 @@ export default async function AdPage({ params }: { params: Promise<Params> }) {
           ) : null}
         </article>
       </div>
+
+      {related.length > 0 ? (
+        <section className={styles.related} aria-label="Related ads">
+          <h2>More to study</h2>
+          <AdGrid ads={related} />
+        </section>
+      ) : null}
     </main>
   );
 }

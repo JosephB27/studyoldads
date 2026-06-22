@@ -1,0 +1,43 @@
+.prose {
+  padding: 0 clamp(18px, 4vw, 52px) clamp(48px, 9vh, 88px);
+  max-width: 720px;
+}
+
+.prose p {
+  font-size: 16px;
+  line-height: 1.6;
+  margin-bottom: 18px;
+}
+
+.prose h2 {
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #6b6b6b;
+  margin: clamp(28px, 5vh, 44px) 0 14px;
+}
+
+.facetList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 10px;
+}
+
+.facet {
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #050505;
+  border: 1px solid #d6d2c6;
+  border-radius: 999px;
+  padding: 6px 12px;
+}
+
+.facet:hover {
+  background: #f4f4f3;
+}
+
+.count {
+  color: #9a9a9a;
+}

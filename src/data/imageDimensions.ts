@@ -13,6 +13,7 @@ export const imageDimensions: Record<string, { width: number; height: number }> 
   "/ads/added/campbells-can-bag.png": { width: 640, height: 845 },
   "/ads/added/campbells-soup-on-the-rocks.png": { width: 749, height: 962 },
   "/ads/added/chesterfield-pleasure.png": { width: 771, height: 1000 },
+  "/ads/added/coca-cola-5cents-1900.jpg": { width: 1315, height: 1800 },
   "/ads/added/coca-cola-come-over.png": { width: 640, height: 866 },
   "/ads/added/coca-cola-no1-in-the-sun.png": { width: 547, height: 724 },
   "/ads/added/heinz-ketchup-seasons-best.png": { width: 199, height: 254 },
