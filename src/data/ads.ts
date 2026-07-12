@@ -935,6 +935,119 @@ const addedAds: Ad[] = [
       "Created by Fallon McElligott (Minneapolis) -- art director Houman Pirdavari, copywriter Jarl Olsen -- the ad bends Penn tennis balls into the curve of a croissant and lets the line 'Official Ball of the 1988 French Open' supply the joke's payoff. The single visual pun fuses the most French of pastries with the Paris clay-court major, so an American ball stakes its claim at the tournament without arguing the point. It is frequently cited as a model of surrealist, image-driven advertising.",
     palette: ["#d7d000", "#cfc6b4", "#6b6552"],
   },
+  // --- Pan Am destination posters (Chermayeff & Geismar, 1971-72) ---
+  {
+    id: "pan-am-japan",
+    brand: "Pan Am",
+    title: "Japan",
+    year: "1971",
+    period: "Chermayeff & Geismar series",
+    category: "Travel",
+    image: "/ads/added/pan-am-japan.jpg",
+    source: "https://www.moma.org/collection/works/4916",
+    sourceLabel: "MoMA — Pan Am Japan, Ivan Chermayeff & Thomas Geismar",
+    origin: "Pan Am destination poster art-directed by Ivan Chermayeff",
+    dimensions: "vertical",
+    researchStatus: "verified",
+    links: [
+      {
+        label: "MoMA collection record",
+        href: "https://www.moma.org/collection/works/4916",
+      },
+      {
+        label: "Burt Glinn photograph (Artsy)",
+        href: "https://www.artsy.net/artwork/burt-glinn-monks-from-mount-sichimen-monastery-in-early-morning-contemplation-of-mount-fuji-japan",
+      },
+      {
+        label: "Source tweet",
+        href: "https://x.com/luusssso/status/2075941528967496131",
+      },
+    ],
+    description:
+      "Ivan Chermayeff art-directed Pan Am's 1971-72 destination series for Chermayeff & Geismar, pulling stock photography from Magnum's archive and adding only the logo and a Helvetica destination name. The photograph here is Burt Glinn's 1961 image of monks from Mount Shichimen monastery facing a haze-reddened Mount Fuji; the type runs sideways along the edge to stay out of it. MoMA holds the poster in its permanent collection.",
+    palette: ["#e2571d", "#7e1f0d", "#140a08"],
+  },
+  {
+    id: "pan-am-austria",
+    brand: "Pan Am",
+    title: "Austria",
+    year: "1972",
+    period: "Chermayeff & Geismar series",
+    category: "Travel",
+    image: "/ads/added/pan-am-austria.jpg",
+    source: "https://www.eyemagazine.com/blog/post/pan-ams-helvetica-dreamtime",
+    sourceLabel: "Eye Magazine — Pan Am's Helvetica dreamtime",
+    origin: "Pan Am destination poster art-directed by Ivan Chermayeff",
+    dimensions: "vertical",
+    researchStatus: "seeded",
+    links: [
+      {
+        label: "Eye Magazine on the series",
+        href: "https://www.eyemagazine.com/blog/post/pan-ams-helvetica-dreamtime",
+      },
+      {
+        label: "Source tweet",
+        href: "https://x.com/luusssso/status/2075941528967496131",
+      },
+    ],
+    description:
+      "The 1972 posters in the Chermayeff & Geismar series swap the plain Pan Am logotype for a 'Pan Am's World' wordmark, the quickest way to date them. This one runs a skier's drop past a glacier wall in near-monochrome blue, the red jacket supplying the only warm note, and cants both Helvetica captions to follow the terrain instead of boxing them into a reserved margin.",
+    palette: ["#2e5f9a", "#c3ddf0", "#bf3b2b"],
+  },
+  {
+    id: "pan-am-new-zealand",
+    brand: "Pan Am",
+    title: "New Zealand",
+    year: "1972",
+    period: "Chermayeff & Geismar series",
+    category: "Travel",
+    image: "/ads/added/pan-am-new-zealand.jpg",
+    source: "https://www.eyemagazine.com/blog/post/pan-ams-helvetica-dreamtime",
+    sourceLabel: "Eye Magazine — Pan Am's Helvetica dreamtime",
+    origin: "Pan Am destination poster art-directed by Ivan Chermayeff",
+    dimensions: "vertical",
+    researchStatus: "seeded",
+    links: [
+      {
+        label: "Eye Magazine on the series",
+        href: "https://www.eyemagazine.com/blog/post/pan-ams-helvetica-dreamtime",
+      },
+      {
+        label: "Source tweet",
+        href: "https://x.com/luusssso/status/2075941528967496131",
+      },
+    ],
+    description:
+      "Mitre Peak doubles in the still water of Milford Sound, shot at blue hour so the whole sheet reads as one cold tonal field. Like the rest of the Chermayeff & Geismar series the photograph bleeds to every edge, and the only graphics are a Helvetica 'New Zealand' and the 'Pan Am's World' mark, both set in white so the captions sit inside the scene they name.",
+    palette: ["#2a4f74", "#9dbdd4", "#0c141d"],
+  },
+  {
+    id: "pan-am-argentina",
+    brand: "Pan Am",
+    title: "Argentina",
+    year: "1972",
+    period: "Chermayeff & Geismar series",
+    category: "Travel",
+    image: "/ads/added/pan-am-argentina.jpg",
+    source: "https://www.eyemagazine.com/blog/post/pan-ams-helvetica-dreamtime",
+    sourceLabel: "Eye Magazine — Pan Am's Helvetica dreamtime",
+    origin: "Pan Am destination poster art-directed by Ivan Chermayeff",
+    dimensions: "vertical",
+    researchStatus: "seeded",
+    links: [
+      {
+        label: "Eye Magazine on the series",
+        href: "https://www.eyemagazine.com/blog/post/pan-ams-helvetica-dreamtime",
+      },
+      {
+        label: "Source tweet",
+        href: "https://x.com/luusssso/status/2075941528967496131",
+      },
+    ],
+    description:
+      "Two riders cross in full silhouette beneath a blown-out sun, haze flattening the pampas into bands of yellow and black. Chermayeff sourced the series from Magnum photographers' existing reportage, and this frame keeps that documentary character — an unposed moment — while the white Helvetica 'Argentina' at eye level and the 'Pan Am's World' wordmark in the corner do all the branding.",
+    palette: ["#e5a41c", "#f6edc4", "#221a09"],
+  },
 ];
 
 const canadianaAds: Ad[] = [
