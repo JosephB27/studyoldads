@@ -1077,6 +1077,33 @@ const addedAds: Ad[] = [
       "Roughly nine-tenths of the page is bare off-white; a lone film carton and a four-word question sit in the bottom third. The emptiness is the argument: everything above the box shows what a life without pictures looks like, so the reader completes the pitch before reaching the product. The carton wears the red-panel wordmark Kodak used before its 1971 'K' logo redesign, dating the ad to the heyday of white-space minimalism.",
     palette: ["#eceada", "#d9b13b", "#c8352e"],
   },
+  {
+    id: "ikea-frakta-the-original",
+    brand: "IKEA",
+    title: "The Original",
+    year: "2017",
+    period: "Balenciaga newsjack",
+    category: "Retail",
+    image: "/ads/added/ikea-frakta-the-original.png",
+    source: "https://fortune.com/2017/04/18/ikea-frakta-bag-balenciaga",
+    sourceLabel: "Fortune — IKEA's response to Balenciaga's Frakta lookalike",
+    origin: "IKEA 'The Original' Frakta bag advertisement by agency ACNE",
+    dimensions: "vertical",
+    researchStatus: "verified",
+    links: [
+      {
+        label: "Fortune on the Balenciaga response",
+        href: "https://fortune.com/2017/04/18/ikea-frakta-bag-balenciaga",
+      },
+      {
+        label: "Refinery29 coverage",
+        href: "https://www.refinery29.com/en-us/2017/04/149940/ikea-balenciaga-expensive-shopping-bag",
+      },
+    ],
+    description:
+      "Swedish agency ACNE made this for IKEA in April 2017, days after Balenciaga released a $2,145 leather tote that visibly resembled the 99-cent Frakta bag. The ad borrows luxury-catalogue styling — studio lighting, generous white space, 'THE ORIGINAL' in letterspaced caps — then runs deadpan counterfeit-spotting tips ('Shake it. If it rustles, it's the real deal'), closing on the price: $0.99. The joke let IKEA claim design-icon status without ever naming Balenciaga.",
+    palette: ["#f7f7f5", "#1a75cf", "#f5c518"],
+  },
 ];
 
 const canadianaAds: Ad[] = [
