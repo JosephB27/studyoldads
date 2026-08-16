@@ -1076,6 +1076,34 @@ const addedAds: Ad[] = [
       "Hans Wilsdorf bought the entire front page of the Daily Mail on 24 November 1927 to launch the Oyster, the first waterproof wristwatch. The proof sits in the copy: Channel swimmer Mercedes Gleitze had carried one through her ten-hour Vindication Swim that October, and it emerged keeping perfect time. Rolex signed her as its first 'Testimonee' — the athlete-endorsement template the brand still runs under that name a century later.",
     palette: ["#f1ead9", "#171310", "#d8353f"],
   },
+  {
+    id: "kodak-whats-life-without-pictures",
+    brand: "Kodak",
+    title: "What's Life Without Pictures?",
+    year: "1970",
+    period: "White-space minimalism",
+    category: "Camera",
+    image: "/ads/added/kodak-whats-life-without-pictures.png",
+    source: "https://guides.library.duke.edu/c.php?g=494860&p=3386165",
+    sourceLabel: "Duke University — Ellis Collection of Kodakiana",
+    origin:
+      "Kodak film print advertisement, magazine-page scan; agency and exact publication date unconfirmed",
+    dimensions: "vertical",
+    researchStatus: "seeded",
+    links: [
+      {
+        label: "Ellis Collection of Kodakiana (Duke)",
+        href: "https://guides.library.duke.edu/c.php?g=494860&p=3386165",
+      },
+      {
+        label: "Eastman Kodak — Wikipedia",
+        href: "https://en.wikipedia.org/wiki/Kodak",
+      },
+    ],
+    description:
+      "Roughly nine-tenths of the page is bare off-white; a lone film carton and a four-word question sit in the bottom third. The emptiness is the argument: everything above the box shows what a life without pictures looks like, so the reader completes the pitch before reaching the product. The carton wears the red-panel wordmark Kodak used before its 1971 'K' logo redesign, dating the ad to the heyday of white-space minimalism.",
+    palette: ["#eceada", "#d9b13b", "#c8352e"],
+  },
 ];
 
 const canadianaAds: Ad[] = [
