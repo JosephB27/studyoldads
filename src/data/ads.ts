@@ -1048,6 +1048,34 @@ const addedAds: Ad[] = [
       "Two riders cross in full silhouette beneath a blown-out sun, haze flattening the pampas into bands of yellow and black. Chermayeff sourced the series from Magnum photographers' existing reportage, and this frame keeps that documentary character — an unposed moment — while the white Helvetica 'Argentina' at eye level and the 'Pan Am's World' wordmark in the corner do all the branding.",
     palette: ["#e5a41c", "#f6edc4", "#221a09"],
   },
+  {
+    id: "rolex-oyster-gleitze-1927",
+    brand: "Rolex",
+    title: "The Wonder Watch that Defies the Elements",
+    year: "1927",
+    period: "First waterproof wristwatch",
+    category: "Watch",
+    image: "/ads/added/rolex-oyster-gleitze-1927.jpg",
+    source: "https://www.rolex.com/oyster-story/visionary-undertaking",
+    sourceLabel: "Rolex — Oyster Story: A Visionary Undertaking",
+    origin:
+      "Commemorative reprint of the Daily Mail front-page announcement of 24 November 1927 (red reprint ribbon overlaid)",
+    dimensions: "vertical",
+    researchStatus: "verified",
+    links: [
+      {
+        label: "Rolex on the Gleitze swim",
+        href: "https://www.rolex.com/oyster-story/visionary-undertaking",
+      },
+      {
+        label: "WatchPro on the first Testimonee",
+        href: "https://www.watchpro.com/how-english-channel-swimmer-mercedes-gleitze-became-rolexs-first-brand-ambassador-in-1927-and-why-her-original-oyster-watch-could-sell-for-over-1-3-million/",
+      },
+    ],
+    description:
+      "Hans Wilsdorf bought the entire front page of the Daily Mail on 24 November 1927 to launch the Oyster, the first waterproof wristwatch. The proof sits in the copy: Channel swimmer Mercedes Gleitze had carried one through her ten-hour Vindication Swim that October, and it emerged keeping perfect time. Rolex signed her as its first 'Testimonee' — the athlete-endorsement template the brand still runs under that name a century later.",
+    palette: ["#f1ead9", "#171310", "#d8353f"],
+  },
 ];
 
 const canadianaAds: Ad[] = [
