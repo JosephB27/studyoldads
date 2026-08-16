@@ -721,33 +721,6 @@ const addedAds: Ad[] = [
       "Bruce Kilgore's Air Force 1, launched in late 1982 as the first basketball shoe with Nike Air cushioning, was discontinued after two years, then revived in 1985 when Baltimore retailers sold 3,000 reissued pairs within days and pushed Nike to bring it back for good. An ad shooting the high-tops like trophies fits that comeback moment, selling court dominance: the pun 'on your feet or in your face' frames the shoe as both equipment and a means of posterizing an opponent.",
     palette: ["#141414", "#f2f2f0", "#9a9a96"],
   },
-  {
-    id: "heinz-ketchup-seasons-best-1939",
-    brand: "Heinz",
-    title: "The Season's Best",
-    year: "1939",
-    period: "New Year's holiday illustration",
-    category: "Food",
-    image: "/ads/added/heinz-ketchup-seasons-best.png",
-    source: "https://www.chronicallyvintage.com/2014/11/adventures-in-vintage-advertising-heinz.html",
-    sourceLabel: "Chronically Vintage — Heinz advertising",
-    origin: "H.J. Heinz Tomato Ketchup 'The Season's Best' Saturday Evening Post print advertisement",
-    dimensions: "vertical",
-    researchStatus: "seeded",
-    links: [
-      {
-        label: "Chronically Vintage Heinz writeup",
-        href: "https://www.chronicallyvintage.com/2014/11/adventures-in-vintage-advertising-heinz.html",
-      },
-      {
-        label: "Heinz: a history in ads",
-        href: "https://www.marketingweek.com/heinz-a-history-in-ads/",
-      },
-    ],
-    description:
-      "Heinz had been printing '57 Varieties' since 1896 even though the company already made far more than 57 products; founder H.J. Heinz simply liked the ring of the number. This New Year's page leans on wordplay instead, building the layout around 'The Season's Best and the Best of Seasonings' so a single condiment borrows the goodwill of a holiday toast. The cherub and the oversized '1939' date the ad to a turn-of-year placement rather than a product claim.",
-    palette: ["#1f4a4f", "#c0241f", "#e7dcc1"],
-  },
   // --- Gaming & electronics ---
   {
     id: "nintendo-gameboy-keep-it-in-your-pants",
