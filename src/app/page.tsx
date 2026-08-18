@@ -1,11 +1,11 @@
 "use client";
 
-/* eslint-disable @next/next/no-img-element */
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import Image from "next/image";
 import { ads, adAltText, type Ad } from "@/data/ads";
 import { imageDimensions } from "@/data/imageDimensions";
 import { jsonLdScript, siteJsonLd } from "@/app/_lib/seo";
+import { SubscribeForm } from "@/app/_components/SubscribeForm";
 import styles from "./page.module.css";
 
 const FALLBACK_DIMS = { width: 800, height: 1000 };
@@ -227,6 +227,8 @@ export default function Home() {
         })}
       </section>
 
+      <SubscribeForm variant="band" />
+
       {selectedAd ? (
         <AdOverlay
           ad={selectedAd}
@@ -300,9 +302,10 @@ function CommandPalette({
     inputRef.current?.focus();
   }, []);
 
-  useEffect(() => {
+  const updateQuery = (value: string) => {
+    setQuery(value);
     setActiveIndex(0);
-  }, [query]);
+  };
 
   // Keep the highlighted row in view as you arrow through results.
   useEffect(() => {
@@ -352,7 +355,7 @@ function CommandPalette({
           type="text"
           placeholder="Search by brand or year…"
           value={query}
-          onChange={(event) => setQuery(event.target.value)}
+          onChange={(event) => updateQuery(event.target.value)}
           onKeyDown={handleKeydown}
           aria-label="Search brands"
           autoComplete="off"
@@ -493,6 +496,8 @@ function AdOverlay({
             </a>
           ))}
         </div>
+
+        <SubscribeForm variant="inline" />
       </article>
     </section>
   );

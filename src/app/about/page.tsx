@@ -3,6 +3,7 @@ import Link from "next/link";
 import { ads, categories, decades } from "@/data/ads";
 import { jsonLdScript, breadcrumbJsonLd, SITE_URL } from "@/app/_lib/seo";
 import hub from "@/app/_components/hub.module.css";
+import { SubscribeForm } from "@/app/_components/SubscribeForm";
 import styles from "./about.module.css";
 
 const description =
@@ -72,6 +73,8 @@ export default function AboutPage() {
           ))}
         </nav>
       </div>
+
+      <SubscribeForm variant="band" />
     </main>
   );
 }

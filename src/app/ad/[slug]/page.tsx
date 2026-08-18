@@ -14,6 +14,7 @@ import {
 } from "@/data/ads";
 import { imageDimensions } from "@/data/imageDimensions";
 import { AdGrid } from "@/app/_components/AdGrid";
+import { SubscribeForm } from "@/app/_components/SubscribeForm";
 import { jsonLdScript, breadcrumbJsonLd, SITE_URL } from "@/app/_lib/seo";
 import styles from "./ad.module.css";
 
@@ -193,6 +194,8 @@ export default async function AdPage({ params }: { params: Promise<Params> }) {
           ) : null}
         </article>
       </div>
+
+      <SubscribeForm variant="band" />
 
       {related.length > 0 ? (
         <section className={styles.related} aria-label="Related ads">
