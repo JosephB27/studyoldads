@@ -5,7 +5,6 @@ import {
   adsByCategory,
   categories,
   categoryName,
-  categorySlug,
 } from "@/data/ads";
 import { AdGrid } from "@/app/_components/AdGrid";
 import { jsonLdScript, collectionJsonLd, breadcrumbJsonLd } from "@/app/_lib/seo";

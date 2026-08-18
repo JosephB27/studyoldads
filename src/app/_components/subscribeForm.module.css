@@ -1,0 +1,138 @@
+/* Email capture, in the site's flat editorial system: Arial inherited from the
+   page shell, #050505 on #fff, 11px uppercase letter-spaced labels, 1px rules,
+   no cards, no shadows, no radius. */
+
+.band {
+  display: grid;
+  gap: 14px;
+  padding: clamp(36px, 7vh, 64px) clamp(18px, 4vw, 52px) clamp(48px, 9vh, 88px);
+  border-top: 1px solid #ece8dc;
+  background: #fff;
+  color: #050505;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.kicker {
+  font-size: 11px;
+  line-height: 1.1;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #6b6b6b;
+}
+
+.heading {
+  font-size: clamp(28px, 4vw, 44px);
+  font-weight: 400;
+  line-height: 0.95;
+}
+
+.body {
+  max-width: 520px;
+  font-size: 15px;
+  line-height: 1.42;
+}
+
+.form {
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+  max-width: 520px;
+  margin-top: 4px;
+}
+
+.honeypot {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+.input {
+  flex: 1;
+  min-width: 0;
+  padding: 6px 0;
+  border: 0;
+  border-bottom: 1px solid #d6d2c6;
+  border-radius: 0;
+  background: transparent;
+  color: #050505;
+  font-size: 15px;
+  line-height: 1.2;
+  outline: none;
+}
+
+.input::placeholder {
+  color: #9a9a9a;
+}
+
+.input:focus {
+  border-bottom-color: #050505;
+}
+
+.submit {
+  flex: none;
+  padding: 6px 0 2px;
+  border: 0;
+  background: transparent;
+  color: #050505;
+  cursor: pointer;
+  font-size: 11px;
+  line-height: 1.1;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  border-bottom: 1px solid #d6d2c6;
+}
+
+.submit:hover {
+  opacity: 0.6;
+}
+
+.submit:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+
+.note {
+  font-size: 11px;
+  line-height: 1.4;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #6b6b6b;
+}
+
+/* Overlay / detail-column variant: one quiet row after the research links. */
+.inline {
+  display: grid;
+  gap: 8px;
+  max-width: 520px;
+  margin-top: 14px;
+  padding-top: 14px;
+  border-top: 1px solid #ece8dc;
+}
+
+.inline .form {
+  margin-top: 0;
+  gap: 10px;
+}
+
+.inline .input {
+  font-size: 14px;
+}
+
+.inline .submit {
+  font-size: 14px;
+  padding-top: 4px;
+  text-transform: none;
+  letter-spacing: 0;
+}
+
+@media (max-width: 680px) {
+  .band {
+    padding-top: 32px;
+  }
+
+  .form {
+    flex-wrap: wrap;
+  }
+}

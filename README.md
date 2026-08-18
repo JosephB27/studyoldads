@@ -22,10 +22,17 @@ npm run build
 
 The app runs at [http://localhost:3000](http://localhost:3000).
 
+## Email Capture
+
+The subscribe form (home wall, ad overlay, ad pages, about) adds emails to a Resend Audience via a server action. Copy `.env.example` to `.env.local` and set `RESEND_API_KEY` (must be a full-access key — sending-only keys cannot write audience contacts) and `RESEND_AUDIENCE_ID`. Set the same variables on Vercel. Without them the form renders but valid submits return a generic error.
+
 ## Project Map
 
 - `src/app/page.tsx` renders the image wall and selected-ad overlay.
 - `src/app/page.module.css` owns the Yeezy-style white wall and responsive detail card.
+- `src/app/_lib/subscribe.ts` is the subscribe server action (Resend Audiences).
+- `src/app/_components/SubscribeForm.tsx` renders the subscribe band/inline form.
+- `src/app/error.tsx` is the app-level error boundary (recovery page instead of Next's default crash screen).
 - `src/data/ads.ts` is the verified ad corpus.
 - `data/discovery/` and `data/curation/` track source discovery, seed threads, candidate ideas, and promotion queues.
 - `docs/research-flow.md` describes how social-thread finds become verified archive entries.
